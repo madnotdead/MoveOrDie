@@ -16,16 +16,17 @@
     <Width>800</Width>
     <Height>600</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\O23002\Documents\MoveOrDie\assets\levels\MoveOrDie.oep</Filename>
+  <Filename>C:\Users\Leandro\Documents\MoveOrDie\assets\levels\MoveOrDie.oep</Filename>
   <AngleMode>Radians</AngleMode>
-  <CameraEnabled>false</CameraEnabled>
+  <CameraEnabled>true</CameraEnabled>
   <CameraSize>
     <Width>640</Width>
     <Height>480</Height>
   </CameraSize>
-  <ExportCameraPosition>false</ExportCameraPosition>
+  <ExportCameraPosition>true</ExportCameraPosition>
   <LevelValueDefinitions>
     <ValueDefinition xsi:type="StringValueDefinition" Name="Name" Default="Untitled" MaxChars="-1" MultiLine="false" />
+    <ValueDefinition xsi:type="IntValueDefinition" Name="Time" Default="60" Min="0" Max="100" ShowSlider="false" />
   </LevelValueDefinitions>
   <LayerDefinitions>
     <LayerDefinition xsi:type="GridLayerDefinition">
@@ -51,7 +52,7 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <ExportMode>CSV</ExportMode>
+      <ExportMode>TrimmedCSV</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>entities</Name>
@@ -90,6 +91,23 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="turret" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\images\turret.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="turretType" Default="UP" MaxChars="-1" MultiLine="false" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

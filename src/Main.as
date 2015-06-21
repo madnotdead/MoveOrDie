@@ -3,6 +3,7 @@ package
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import worlds.Intro;
+	import worlds.Sorry;
 
 	/**
 	 * ...
@@ -20,10 +21,9 @@ package
 		{
 			super.init();
 			
-			FP.world = new worlds.Intro();
-			
-			FP.console.toggleKey = 188;
-			FP.console.enable();
+			FP.world = new Intro();
+			//FP.console.toggleKey = 188;
+			//FP.console.enable();
 		}
 	}
 	

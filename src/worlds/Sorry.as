@@ -1,10 +1,10 @@
 package worlds 
 {
 	import misc.Assets;
+	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Text;
-	import net.flashpunk.tweens.misc.ColorTween;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.World;
@@ -13,44 +13,38 @@ package worlds
 	 * ...
 	 * @author madnotdead
 	 */
-	public class Intro extends World 
+	public class Sorry extends World 
 	{
 		private var pressText:Text = null;
-		private var titleColorTween:ColorTween = null;
-		public function Intro() 
+		public function Sorry() 
 		{
 			super();
-			FP.screen.color = 0xFFFFFF;
-			addGraphic(new Image(Assets.INTRO));
 			
-			pressText = new Text("press any key to start");
+				pressText = new Text("press any key to intro");
 			pressText.scale = 2	;
 			pressText.x = (FP.screen.width - pressText.scaledWidth) / 2;
 			pressText.y = FP.screen.height - 75;
 
-			
-			addGraphic(pressText);
-			
-			
 		}
 		
 		override public function begin():void 
 		{
 			super.begin();
-			
-			titleColorTween = new ColorTween(null,LOOPING);
-			titleColorTween.tween(3, 0xFFFF00, 0xFF33FF, 1, 0);
-			addTween(titleColorTween, true);
-			FP.resetCamera();
+			addGraphic(new Image(Assets.NO_MORE_LEVELS));
+			addGraphic(pressText);
+			FP.camera.x = 0;
+			FP.camera.y = 0;
 			FP.screen.scale = 1;
+			FP.resetCamera();
+			
 		}
 		
 		override public function update():void 
 		{
 			super.update();
-			pressText.color = titleColorTween.color;
+			
 			if (Input.pressed(Key.ANY))
-				FP.world = new Game();
+				FP.world = new Intro;
 		}
 	}
 

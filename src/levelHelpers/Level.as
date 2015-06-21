@@ -1,6 +1,9 @@
 package  levelHelpers
 {
+	import entities.Player;
+	import entities.Turret;
 	import misc.Assets;
+	import misc.Constants;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Graphiclist;
@@ -19,13 +22,19 @@ package  levelHelpers
 		private var tile_layer1:Tilemap;
 		private var tile_layer2:Tilemap;
 		private var grid:Grid;
+		private var player:Player;
+		
+		
+		/** Camera following information. */
+		public const FOLLOW_TRAIL:Number = 50;
+		public const FOLLOW_RATE:Number = .9;
 		
 		public function Level(rawData:Class) 
 		{
 			super(0, 0);
 			
 			// to check for level collisions
-			type = "level"; 
+			type = Constants.LEVEL_TYPE;
 			
 			// FlashPunk function makes get all that data super easy!
 			this.xml = FP.getXML(rawData);
@@ -67,22 +76,28 @@ package  levelHelpers
 				//world.add(new entities.PlayerOne(element.@x, element.@y));
 			//}
 			//
-			//// for each player in the xml list
-			//list = xml.entities.player2;
-			//for each (element in list) {
-				//// add it
-				//world.add(new entities.PlayerTwo(element.@x, element.@y));
-			//}
+			// for each player in the xml list
+			list = xml.entities.player;
+			for each (element in list) {
+				// add it
+				player = new Player(element.@x, element.@y);
+				world.add(player);
+			}
+			
+			list = xml.entities.turret;
+			
+			for each( element in list)
+			{
+				world.add(new Turret(element.@x, element.@y, element.@turretType));
+			}
 		}
 		
 		override public function update():void 
 		{
 			super.update();
-			
-			//if (Input.pressed(Key.SPACE))
-				//tile_layer1.visible = !tile_layer1.visible ;
+			//FP.camera.x = player.x - 200;// - FP.halfWidth) * FP.screen.scale;
+			//FP.camera.y = player.y - 130;// - FP.halfHeight) * FP.screen.scale;
 		}
-		
 	}
 
 }
